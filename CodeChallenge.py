@@ -46,3 +46,30 @@ curriculum = [
 # - Allow users to input new activities & parents before executing the script.
 # - Print one activity at a time per parent and continue cycling through until
 #   all parents have recieved all their activities.
+
+#################################
+#MY IMPLEMENTATION OF THE SCRIPT#
+#################################
+
+def curriculumFinder():
+    agelist=[];
+    for x in curriculum:
+        agelist.append(x['age']);
+    for x in parents:
+        if not x['child']:
+            print("Hello " + x['parent'] + " You have no kids so we are unable to provide a curriculum!")
+        else:
+            print('Hello '+ x['parent']+ '! The name of your child that we have on record is: ' + x['child']['name'] + " who is " + str(x['child']['age']) + " years old!")
+            childAge=x['child']['age']
+            if childAge in agelist:
+                print("Your curriculum is:")
+                for z in agelist:
+                    if childAge == agelist[z-1]:
+                        for h in curriculum[z-1]['activity']:
+                            print(h)
+                print('Curriculum Complete!')
+            else:
+                print("Your child is not 1-3 years old so we are currently unable to provide a curriculum. Sorry for the inconvinience! Please Check back in the near future!")
+        print()
+
+curriculumFinder();
