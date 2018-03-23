@@ -51,22 +51,26 @@ curriculum = [
 #MY IMPLEMENTATION OF THE SCRIPT#
 #################################
 
+#compares age of child and age values presented in the curriculum list
+#then for each child, presents a curriculum corresponding to their age
+#also checks for parents with no children in the system and those who have
+#children whose age does not fall in the range 1-3
 def curriculumFinder():
     agelist=[];
-    for x in curriculum:
-        agelist.append(x['age']);
-    for x in parents:
-        if not x['child']:
-            print("Hello " + x['parent'] + " You have no kids so we are unable to provide a curriculum!")
+    for curriculumAge in curriculum:
+        agelist.append(curriculumAge['age']);
+    for curriculumAge in parents:
+        if not curriculumAge['child']:
+            print("Hello " + curriculumAge['parent'] + " You have no kids so we are unable to provide a curriculum!")
         else:
-            print('Hello '+ x['parent']+ '! The name of your child that we have on record is: ' + x['child']['name'] + " who is " + str(x['child']['age']) + " years old!")
-            childAge=x['child']['age']
+            print('Hello '+ curriculumAge['parent']+ '! The name of your child that we have on record is: ' + curriculumAge['child']['name'] + " who is " + str(curriculumAge['child']['age']) + " years old!")
+            childAge=curriculumAge['child']['age']
             if childAge in agelist:
                 print("Your curriculum is:")
-                for z in agelist:
-                    if childAge == agelist[z-1]:
-                        for h in curriculum[z-1]['activity']:
-                            print(h)
+                for index in agelist:
+                    if childAge == agelist[index-1]:
+                        for curriculumRecommendation in curriculum[index-1]['activity']:
+                            print(curriculumRecommendation)
                 print('Curriculum Complete!')
             else:
                 print("Your child is not 1-3 years old so we are currently unable to provide a curriculum. Sorry for the inconvinience! Please Check back in the near future!")
